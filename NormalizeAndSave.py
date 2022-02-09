@@ -2,7 +2,7 @@ from sklearn.preprocessing import MinMaxScaler
 import pandas as pd
 
 
-def normalize_and_save(df, drop_col_names, save_path):
+def normalize_and_save(df, drop_col_names, save_path, want_save=False):
     dropped_col_values = []
 
     # drop cols inside drop_col_names list ['gender', 'class']
@@ -28,6 +28,7 @@ def normalize_and_save(df, drop_col_names, save_path):
     concatenated_df = pd.concat([dropped_df, scaled_df], axis=1)
 
     # save as csv
-    concatenated_df.to_csv(save_path, index=False)
+    if want_save:
+        concatenated_df.to_csv(save_path, index=False)
 
     return concatenated_df
