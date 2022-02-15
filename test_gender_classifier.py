@@ -16,6 +16,10 @@ test_dataset.drop('class', inplace=True, axis=1)
 y_test = test_dataset['gender']
 X_test = test_dataset.loc[:, test_dataset.columns != 'gender']
 
+print(X_test.columns)
+print(X_test)
+
+# convert categorical data into numerical data
 label_encoder = LabelEncoder()
 y_test = label_encoder.fit_transform(y_test)
 
@@ -25,6 +29,8 @@ model.load_model('./models/best_gc.json')
 
 # predict the model
 preds = model.predict(X_test)
+
+print(preds)
 
 print('Accuracy:  ', accuracy_score(y_test, preds))
 print('Model 1 XGboost Report %r' % (classification_report(y_test, preds)))

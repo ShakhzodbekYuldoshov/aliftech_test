@@ -29,7 +29,7 @@ X_test = test_dataset.loc[:, test_dataset.columns != 'gender']
 y_train = label_encoder.fit_transform(y_train)
 y_test = label_encoder.fit_transform(y_test)
 
-# parameters for randoomized search cv
+# parameters for randomized search cv
 params = {
     'learning_rate': [0.01, 0.1, 0.15, 0.2, 0, 25, 0, 3],
     'max_depth': [2, 3, 5, 8, 10, 12, 15, 18],

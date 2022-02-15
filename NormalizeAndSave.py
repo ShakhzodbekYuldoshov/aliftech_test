@@ -1,18 +1,11 @@
+from xml.sax.xmlreader import IncrementalParser
 from sklearn.preprocessing import MinMaxScaler
 import pandas as pd
 
 
 def normalize_and_save(df, drop_col_names, save_path, want_save=False):
-    dropped_col_values = []
-
-    # drop cols inside drop_col_names list ['gender', 'class']
-    # because we cannot normalize dataset with str values
-    for col_name in drop_col_names:
-        try:
-            dropped_col_values.append(df[col_name])
-            df.drop(col_name, inplace=True, axis=1)
-        except:
-            print('Column not found:  ', col_name)
+    dropped_col_values = [df[col_name] for col_name in drop_col_names]
+    new_df = df.drop(drop_col_names, inplace=False, axis=1)
 
     # normalize dataframe between 0 and 1
     scaler = MinMaxScaler()
